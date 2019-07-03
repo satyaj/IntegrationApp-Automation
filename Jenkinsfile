@@ -77,9 +77,9 @@ pipeline {
 
             }
         }
-        stage('Build fisuser-service') {
+        stage('Build fuse-user-service') {
             environment {
-                serviceName = 'fisuser-service'
+                serviceName = 'fuse-user-service'
             }
             when {
                 expression {
@@ -95,9 +95,9 @@ pipeline {
                 deploy(env.serviceName, params.DEV_PROJECT, params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, params.MYSQL_USER, params.MYSQL_PWD)
             }
         }
-        stage('Build fisalert-service') {
+        stage('Build fuse-alert-service') {
             environment {
-                serviceName = 'fisalert-service'
+                serviceName = 'fuse-alert-service'
             }
             when {
                 expression {
@@ -158,11 +158,11 @@ pipeline {
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
 
-                    serviceName = 'fisuser-service'
+                    serviceName = 'fuse-user-service'
                     smokeTestOperation = 'cicd/users/profile/11111'
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
-                    serviceName = 'fisalert-service'
+                    serviceName = 'fuse-alert-service'
                     smokeTestOperation = 'cicd/alerts'
                     body = ''' { "alertType": "ACCIDENT",  "firstName": "Abdul Hameed",  "date": "11/8/2019",  "phone": "78135955",  "email": "ahameed@redhat.com",  "description": "test"} '''
                     makePostRequest("http://${serviceName}/${smokeTestOperation}", body, 'POST')
@@ -204,10 +204,10 @@ pipeline {
             }
             steps {
                 echo "Deploy to ${TEST_PROJECT} "
-                tagImage(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fisuser-service', env.srcTag, env.destTag)
-                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisuser-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.TEST_PROJECT)
-                setEnvForDBModule(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisuser-service', params.TEST_PROJECT, params.MYSQL_USER, params.MYSQL_PWD)
-                promoteService(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fisuser-service', env.srcTag, env.destTag)
+                tagImage(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fuse-user-service', env.srcTag, env.destTag)
+                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-user-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.TEST_PROJECT)
+                setEnvForDBModule(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-user-service', params.TEST_PROJECT, params.MYSQL_USER, params.MYSQL_PWD)
+                promoteService(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fuse-user-service', env.srcTag, env.destTag)
             }
         }
         stage('Pushing to Test - fisalert') {
@@ -223,9 +223,9 @@ pipeline {
             }
             steps {
                 echo "Deploy to ${TEST_PROJECT} "
-                tagImage(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fisalert-service', env.srcTag, env.destTag)
-                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisalert-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.TEST_PROJECT)
-                promoteService(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fisalert-service', env.srcTag, env.destTag)
+                tagImage(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fuse-alert-service', env.srcTag, env.destTag)
+                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-alert-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.TEST_PROJECT)
+                promoteService(params.IMAGE_NAMESPACE, params.TEST_PROJECT, 'fuse-alert-service', env.srcTag, env.destTag)
             }
         }
         stage('Pushing to Test - nodejsalert') {
@@ -264,11 +264,11 @@ pipeline {
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
 
-                    serviceName = 'fisuser-service'
+                    serviceName = 'fuse-user-service'
                     smokeTestOperation = 'cicd/users/profile/11111'
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
-                    serviceName = 'fisalert-service'
+                    serviceName = 'fuse-alert-service'
                     smokeTestOperation = 'cicd/alerts'
                     body = ''' { "alertType": "ACCIDENT",  "firstName": "Abdul Hameed",  "date": "11/8/2019",  "phone": "78135955",  "email": "ahameed@redhat.com",  "description": "test"} '''
                     makePostRequest("http://${serviceName}/${smokeTestOperation}", body, 'POST')
@@ -399,10 +399,10 @@ pipeline {
             }
             steps {
                 echo "Deploy to ${PROD_PROJECT} "
-                tagImage(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fisuser-service', env.srcTag, env.destTag)
-                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisuser-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.PROD_PROJECT)
-                setEnvForDBModule(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisuser-service', params.PROD_PROJECT, params.MYSQL_USER, params.MYSQL_PWD)
-                promoteService(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fisuser-service', env.srcTag, env.destTag)
+                tagImage(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fuse-user-service', env.srcTag, env.destTag)
+                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-user-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.PROD_PROJECT)
+                setEnvForDBModule(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-user-service', params.PROD_PROJECT, params.MYSQL_USER, params.MYSQL_PWD)
+                promoteService(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fuse-user-service', env.srcTag, env.destTag)
             }
         }
         stage('Pushing to Prod - fisalert') {
@@ -417,9 +417,9 @@ pipeline {
             }
             steps {
                 echo "Deploy to ${PROD_PROJECT} "
-                tagImage(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fisalert-service', env.srcTag, env.destTag)
-                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fisalert-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.PROD_PROJECT)
-                promoteService(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fisalert-service', env.srcTag, env.destTag)
+                tagImage(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fuse-alert-service', env.srcTag, env.destTag)
+                promoteServiceSetup(params.OPENSHIFT_HOST, params.OPENSHIFT_TOKEN, 'fuse-alert-service', params.IMAGE_REGISTRY, params.IMAGE_NAMESPACE, env.destTag, params.PROD_PROJECT)
+                promoteService(params.IMAGE_NAMESPACE, params.PROD_PROJECT, 'fuse-alert-service', env.srcTag, env.destTag)
             }
         }
         stage('Pushing to Prod - nodejsalert') {
@@ -457,11 +457,11 @@ pipeline {
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
 
-                    serviceName = 'fisuser-service'
+                    serviceName = 'fuse-user-service'
                     smokeTestOperation = 'cicd/users/profile/11111'
                     makeGetRequest("http://${serviceName}/${smokeTestOperation}")
 
-                    serviceName = 'fisalert-service'
+                    serviceName = 'fuse-alert-service'
                     smokeTestOperation = 'cicd/alerts'
                     body = ''' { "alertType": "ACCIDENT",  "firstName": "Abdul Hameed",  "date": "11/8/2019",  "phone": "78135955",  "email": "ahameed@redhat.com",  "description": "test"} '''
                     makePostRequest("http://${serviceName}/${smokeTestOperation}", body, 'POST')

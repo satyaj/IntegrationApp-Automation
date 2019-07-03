@@ -49,8 +49,8 @@
                 <hystrixConfiguration
                     circuitBreakerSleepWindowInMilliseconds="10000" executionTimeoutInMilliseconds="5000"/>
                 <recipientList id="_userservice">
-                    <!--                     <simple>http://fisuser-service-cicddemo.app.rhdp.ocp.cloud.lab.eng.bos.redhat.com/cicd/user/profile/${header.acctid}?bridgeEndpoint=true</simple> -->
-                    <simple>http://fisuser-service/cicd/users/profile/${header.id}?bridgeEndpoint=true</simple>
+                    <!--                     <simple>http://fuse-user-service-cicddemo.app.rhdp.ocp.cloud.lab.eng.bos.redhat.com/cicd/user/profile/${header.acctid}?bridgeEndpoint=true</simple> -->
+                    <simple>http://fuse-user-service/cicd/users/profile/${header.id}?bridgeEndpoint=true</simple>
                 </recipientList>
                 <convertBodyTo id="_convertBodyTo1" type="java.lang.String"/>
                 <unmarshal id="_unmarshal1">
@@ -63,8 +63,8 @@
                     <constant>POST</constant>
                 </setHeader>
                 <recipientList id="_alertservice">
-                    <!--                     <simple>http://fisalert-service-cicddemo.app.rhdp.ocp.cloud.lab.eng.bos.redhat.com/cicd/alert?bridgeEndpoint=true</simple> -->
-                    <simple>http://fisalert-service/cicd/alerts?bridgeEndpoint=true</simple>
+                    <!--                     <simple>http://fuse-alert-service-cicddemo.app.rhdp.ocp.cloud.lab.eng.bos.redhat.com/cicd/alert?bridgeEndpoint=true</simple> -->
+                    <simple>http://fuse-alert-service/cicd/alerts?bridgeEndpoint=true</simple>
                 </recipientList>
                 <convertBodyTo id="_convertBodyTo2" type="java.lang.String"/>
                 <unmarshal id="_unmarshal2">

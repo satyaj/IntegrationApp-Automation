@@ -22,8 +22,8 @@ oc import-image amq-broker-72-openshift:1.3 --from=registry.access.redhat.com/am
 oc new-app -f projecttemplates/amq-broker-72-basic.yaml --param=AMQ_USER=admin --param=AMQ_PASSWORD=admin --param=IMAGE_STREAM_NAMESPACE=$DEV_PROJECT
 
 
-echo "import fisuser-service pipeline"
-oc new-app -f fisuser-service/src/main/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT 
+echo "import fuse-user-service pipeline"
+oc new-app -f fuse-user-service/src/main/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT
 
 echo "import maingateway-service pipeline"
 oc new-app -f maingateway-service/src/main/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT
@@ -31,8 +31,8 @@ oc new-app -f maingateway-service/src/main/resources/pipeline-app-build.yml -p I
 echo "import nodejsalert-ui pipeline"
 oc new-app -f nodejsalert-ui/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT
 
-echo "import fisalert-service pipeline"
-oc new-app -f fisalert-service/src/main/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT
+echo "import fuse-alert-service pipeline"
+oc new-app -f fuse-alert-service/src/main/resources/pipeline-app-build.yml -p IMAGE_NAMESPACE=$DEV_PROJECT -p DEV_PROJECT=$DEV_PROJECT -p TEST_PROJECT=$TEST_PROJECT -p PROD_PROJECT=$PROD_PROJECT
 
 
 echo "import integration-master-pipeline"

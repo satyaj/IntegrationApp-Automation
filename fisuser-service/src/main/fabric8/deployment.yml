@@ -10,7 +10,7 @@ spec:
               memory: 256Mi
             limits:
               cpu: "1.0"
-              memory: 256Mi
+              memory: 512Mi
           env:
           - name: MYSQL_SERVICE_NAME
             value: mysql

@@ -1,7 +1,7 @@
 #!groovy
 library identifier: '3scale-toolbox-jenkins@master',
         retriever: modernSCM([$class: 'GitSCMSource',
-                              remote: 'https://github.com/rh-integration/3scale-toolbox-jenkins.git',
+                              remote: 'https://github.com/satyaj/3scale-toolbox-jenkins.git',
                               traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
 
 def service = null
@@ -21,7 +21,7 @@ pipeline {
         string(defaultValue: 'rh-dev', name: 'DEV_PROJECT', description: 'build or development project')
         string(defaultValue: 'rh-test', name: 'TEST_PROJECT', description: 'Test project')
         string(defaultValue: 'rh-prod', name: 'PROD_PROJECT', description: 'Production project')
-        string(defaultValue: 'https://github.com/rh-integration/IntegrationApp-Automation.git', name: 'GIT_REPO', description: 'Git source')
+        string(defaultValue: 'https://github.com/satyaj/IntegrationApp-Automation.git', name: 'GIT_REPO', description: 'Git source')
         string(defaultValue: 'master', name: 'GIT_BRANCH', description: 'Git branch in the source git')
         string(defaultValue: 'dbuser', name: 'MYSQL_USER', description: 'My Sql user name')
         string(defaultValue: 'password', name: 'MYSQL_PWD', description: 'My Sql user password')

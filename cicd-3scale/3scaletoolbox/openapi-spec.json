@@ -47,7 +47,7 @@
     "apikey" : [ ]
   } ],
 
-  "host": "maingateway-service-rh-test.app.middleware.ocp.cloud.lab.eng.bos.redhat.com",
+  "host": "maingateway-service-rh-test.apps-8f62.generic.opentlc.com",
   "basePath": "/cicd",
   "schemes": [
     "http"

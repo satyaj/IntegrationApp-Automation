@@ -51,8 +51,6 @@ pipeline {
                     service = toolbox.prepareThreescaleService(
                             openapi: [filename: "cicd-3scale/3scaletoolbox/openapi-spec.json"],
                             environment: [baseSystemName                : params.API_BASE_SYSTEM_NAME,
-                                          privateBaseUrl                : backend_service,
-                                          privateBasePath               : "/cicd",
                                           environmentName               :  envName,
                                           publicStagingWildcardDomain: params.PUBLIC_STAGING_WILDCARD_DOMAIN != "" ? params.PUBLIC_STAGING_WILDCARD_DOMAIN : null,
                                           publicProductionWildcardDomain: params.PUBLIC_PRODUCTION_WILDCARD_DOMAIN != "" ? params.PUBLIC_PRODUCTION_WILDCARD_DOMAIN : null

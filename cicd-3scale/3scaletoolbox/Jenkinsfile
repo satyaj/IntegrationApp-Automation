@@ -20,7 +20,7 @@ pipeline {
         string (defaultValue: 'rh-dev', name:'DEV_PROJECT', description:'build or development project')
         string (defaultValue: 'rh-test', name:'TEST_PROJECT', description:'Test project')
         string (defaultValue: 'rh-prod', name:'PROD_PROJECT', description:'Production project')
-        string (defaultValue: 'https://github.com/rh-integration/IntegrationApp-Automation.git', name:'GIT_REPO', description:'Git source')
+        string (defaultValue: 'https://github.com/satyaj/IntegrationApp-Automation.git', name:'GIT_REPO', description:'Git source')
         string (defaultValue: 'master', name:'GIT_BRANCH', description:'Git branch in the source git')
         booleanParam (defaultValue: false, name:'SELECT_DEPLOY_TO_PROD', description:'Approval to deploy to Production (default: no deployment to production)')
     }
@@ -49,7 +49,7 @@ pipeline {
 
                     echo "Prepare 3scale Configuration"
                     service = toolbox.prepareThreescaleService(
-                            openapi: [filename: "cicd-3scale/3scaletoolbox/openapi-spec.json"],
+                            openapi: [filename: "/cicd/api-docs"],
                             environment: [baseSystemName                : params.API_BASE_SYSTEM_NAME,
                                           privateBaseUrl                : backend_service,
                                           privateBasePath               : "/cicd",

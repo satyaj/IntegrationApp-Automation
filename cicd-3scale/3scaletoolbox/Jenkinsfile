@@ -49,6 +49,7 @@ pipeline {
 
                     echo "Prepare 3scale Configuration"
                     service = toolbox.prepareThreescaleService(
+                            openapi: [filename: "cicd-3scale/3scaletoolbox/openapi-spec.json"],
                             environment: [baseSystemName                : params.API_BASE_SYSTEM_NAME,
                                           privateBaseUrl                : backend_service,
                                           privateBasePath               : "/cicd",
@@ -59,6 +60,7 @@ pipeline {
                             toolbox: [openshiftProject: params.DEV_PROJECT, destination: params.TARGET_INSTANCE,
                                       image           : params.TOOLBOX_IMAGE_REGISTRY,
                                       insecure        : params.DISABLE_TLS_VALIDATION == "yes",
+                                      verbose         : "true",
                                       secretName      : params.SECRET_NAME],
                             service: [:],
                             applicationPlans: [

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "useralert-Fuseservice",
+    "title": "useralert-Fuseservice-new",
     "description": "Fuse Integration Service - main gateway Service",
     "version": "1.0.0"
   },
